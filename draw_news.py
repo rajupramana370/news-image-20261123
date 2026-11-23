@@ -145,9 +145,9 @@ def pic_ship_drone(d, x, y, s):
 
 def pic_ballot258(d, x, y, s):
     """Ballot box with the seat count on its face."""
-    d.rectangle([x + s * 0.08, y + s * 0.42, x + s * 0.92, y + s * 0.94],
+    d.rectangle([x + s * 0.02, y + s * 0.42, x + s * 0.98, y + s * 0.96],
                 fill=NAVY)
-    d.rectangle([x + s * 0.08, y + s * 0.42, x + s * 0.92, y + s * 0.55],
+    d.rectangle([x + s * 0.02, y + s * 0.42, x + s * 0.98, y + s * 0.54],
                 fill=GOLD)
     d.polygon([(x + s * 0.34, y + s * 0.04), (x + s * 0.66, y + s * 0.04),
                (x + s * 0.60, y + s * 0.42), (x + s * 0.40, y + s * 0.42)],
@@ -156,13 +156,13 @@ def pic_ballot258(d, x, y, s):
            fill=GREY, width=3)
     d.line([(x + s * 0.42, y + s * 0.25), (x + s * 0.58, y + s * 0.25)],
            fill=GREY, width=3)
-    tf = font(SANS_B, 40)
+    tf = font(SANS_B, 30)
     tw = d.textlength("258", font=tf)
-    d.text((x + (s - tw) / 2, y + s * 0.60), "258", font=tf,
+    d.text((x + (s - tw) / 2, y + s * 0.57), "258", font=tf,
            fill=(255, 255, 255))
-    sf = font(SANS_B, 17)
+    sf = font(SANS_B, 14)
     sw = d.textlength("SEATS", font=sf)
-    d.text((x + (s - sw) / 2, y + s * 0.82), "SEATS", font=sf, fill=GOLD)
+    d.text((x + (s - sw) / 2, y + s * 0.83), "SEATS", font=sf, fill=GOLD)
 
 
 def pic_building_hit(d, x, y, s):
@@ -262,7 +262,7 @@ def main():
     # ---- Grid: stories 2-5 ----
     cells = [
         (36, 408, pic_ship_drone, "UKRAINE  •  LIBYA",
-         ["Ukraine says drones sank", "a Russian warship in Libya"],
+         ["Ukraine drones sink", "a Russian warship in Libya"],
          "Kyiv says its naval drones struck the corvette Mercury at "
          "Benghazi, carrying the sea war to the Mediterranean."),
         (524, 408, pic_ballot258, "USA  •  CONGRESS",
@@ -270,17 +270,18 @@ def main():
          "At least 258 seats after a North Carolina recount: the "
          "party\u2019s strongest House result in over three decades."),
         (36, 620, pic_building_hit, "RUSSIA-UKRAINE  •  STRIKES",
-         ["Russian strikes kill a child", "in Zelenskyy\u2019s home town"],
-         "Overnight attacks on Kryvyi Rih kill a child and a young "
-         "woman; near Kyiv, 14 people are missing in a ruined block."),
+         ["Russian strikes kill", "a child in Kryvyi Rih"],
+         "Overnight attacks on Kryvyi Rih, President Zelenskyy\u2019s "
+         "home town, kill a child and a young woman; 14 missing "
+         "near Kyiv."),
         (524, 620, pic_missile_factory, "IRAN WAR  •  BAHRAIN",
-         ["Trump: Iran wants a deal,", "not one he can accept"],
-         "Tehran\u2019s attack hits a Bahraini industrial site as "
-         "Washington says any deal must be \u2018a real deal\u2019."),
+         ["Trump rejects Iran\u2019s", "terms for ending the war"],
+         "Trump says Iran wants a deal, just not an acceptable one; "
+         "Tehran\u2019s attack hits a Bahraini industrial site."),
     ]
     for (cx, cy, pic, kicker, heads, stand) in cells:
-        pic(d, cx + 348, cy + 8, 108)
-        headline_block(d, cx, cy, 330, kicker, heads, stand, head_size=25)
+        pic(d, cx + 358, cy + 8, 102)
+        headline_block(d, cx, cy, 330, kicker, heads, stand, head_size=24)
         if cx == 36:
             d.line([(500, cy), (500, cy + 186)], fill=GREY, width=1)
     rule(d, 604, width=1, fill=GREY)
@@ -300,11 +301,10 @@ def main():
 
     # ---- Footer: also today ----
     fnt = font(SANS, 16)
-    footer = ("ALSO TODAY:  NATO in emergency talks after Russian "
-              "missiles enter Poland  •  EU and Indonesia sign landmark "
-              "trade deal  •  WHO: fighting disrupts Ebola response in "
-              "Congo  •  Nasdaq futures jump 3%  •  Pitcher Skubal signs "
-              "record $450m Mets deal.")
+    footer = ("ALSO TODAY:  NATO talks after Russian missiles enter "
+              "Poland  •  EU\u2013Indonesia trade deal signed  •  WHO: "
+              "fighting disrupts Ebola response in Congo  •  Nasdaq "
+              "futures +3%  •  Skubal signs record $450m deal.")
     y = 974
     for line in wrap(d, footer, fnt, 952):
         draw_centered(d, y, line, fnt, fill=(60, 60, 60))
